@@ -51,7 +51,7 @@ A comprehensive management system for yacht club operations, built with Spring B
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/yachtclub-backend.git
+git clone https://github.com/dogabyte/yachtclub-backend.git
 cd yachtclub-backend
 ```
 
@@ -237,7 +237,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Gabriel** - *Initial work* - [dogabyte](https://github.com/dogabyte)
 
 ## 🙏 Acknowledgments
 
