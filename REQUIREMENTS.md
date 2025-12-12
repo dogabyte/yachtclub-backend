@@ -17,7 +17,7 @@ Develop a full-stack web application that enables:
 
 ## 👥 User Roles & Permissions
 
-### 1. Partner (Socio)
+### 1. Partner
 **Access Level**: Read-only for personal data
 
 **Capabilities**:
@@ -30,7 +30,7 @@ Develop a full-stack web application that enables:
 - Cannot modify any data
 - Cannot view other members' information
 
-### 2. Employee (Empleado)
+### 2. Employee
 **Access Level**: Read-only for assigned zones
 
 **Capabilities**:
@@ -44,7 +44,7 @@ Develop a full-stack web application that enables:
 - Cannot access zones not assigned to them
 - Cannot view administrative data
 
-### 3. Administrator (Administrador)
+### 3. Administrator
 **Access Level**: Full CRUD operations
 
 **Capabilities**:
@@ -220,7 +220,7 @@ Partner (1) ──────── (N) Mooring (purchased moorings)
 
 ### Development Practices
 - MVC architectural pattern
-- Factory Method pattern for user creation
+- Strategy Pattern for authentication (UserAuthenticationStrategy)
 - Repository pattern for data access
 - Service layer for business logic
 - DTO pattern for data transfer
