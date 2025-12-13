@@ -23,7 +23,7 @@ public class Mooring {
     private Zone zone;
 
     @OneToOne
-    @JoinColumn(name = "boat_registration", referencedColumnName = "vesselNumber", nullable = false)
+    @JoinColumn(name = "boat_registration", referencedColumnName = "vessel_number", nullable = false)
     private Boat boat;
 
     @Column(name = "water_consumption", nullable = true)
