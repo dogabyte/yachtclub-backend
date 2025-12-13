@@ -38,7 +38,6 @@ public class Mooring {
     @Column(name = "assignment_date", nullable = false)
     private LocalDate assignmentDate;
 
-    // Can be null if the mooring was not purchased, only assigned
     @Column(name = "purchase_date")
     private LocalDate purchaseDate;
 

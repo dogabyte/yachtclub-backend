@@ -16,11 +16,6 @@ import java.util.List;
 @SuperBuilder
 public class Partner extends User {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @Column(name = "id_partner")
-    // private Long id;
-
     @Column(name = "dni", unique = true, nullable = false, length = 20)
     private String dni;
 

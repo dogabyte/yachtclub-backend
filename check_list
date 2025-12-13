@@ -1,0 +1,76 @@
+✅ Checklist para revisión y alineación
+Entidades y Relaciones (backend)
+
+ Socio
+
+ Empleado
+
+ Administrador
+
+ Embarcación
+
+ Amarre
+
+ Zona
+
+ Asignación de empleados a zonas (EmpleadoZona)
+
+ Usuario (abstracta para aplicar patrón Factory)
+
+Relaciones claves según el enunciado
+
+ Un socio puede tener muchas embarcaciones.
+
+ Una embarcación pertenece a un único socio.
+
+ Un amarre pertenece a una única zona.
+
+ Un amarre puede ser comprado por un socio (fecha compra).
+
+ Una embarcación ocupa un solo amarre (fecha asignación).
+
+ Un empleado puede estar asignado a muchas zonas (relación muchos a muchos).
+
+ Solo administrador gestiona datos, socio y empleado acceden en modo lectura.
+
+Arquitectura
+
+ Patrón MVC (con DTOs, Mappers, Servicios, Repositorios)
+
+ Uso de Spring Data JPA
+
+ DTOs generados para cada entidad pública
+
+ Mappers implementados con MapStruct o manualmente
+
+ Factory Method implementado correctamente para usuarios
+
+Revisión técnica
+
+ ¿Hay errores en la anotación JPA? (@JoinColumn, mappedBy, claves foráneas)
+
+ ¿Todos los repositorios existen y tienen consultas necesarias?
+
+ ¿Los DTOs cubren todos los casos de uso requeridos?
+
+ ¿Servicios y controladores están implementados según acceso?
+
+ ¿Funcionan las relaciones bidireccionales como embarcaciones de socio o amarres de socio?
+
+Seguridad y Acceso
+
+ ¿Los roles están implementados? (ADMIN, SOCIO, EMPLEADO)
+
+ ¿Se respeta acceso solo lectura para empleados y socios?
+
+ ¿Spring Security está configurado? (si aplica)
+
+Preparación para el frontend
+
+ Controladores REST expuestos con DTOs
+
+ Endpoints documentados (Swagger/OpenAPI)
+
+ Estructura clara de rutas para consumir desde el frontend
+
+ Cors habilitado si backend y frontend están separados

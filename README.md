@@ -26,6 +26,137 @@ A comprehensive management system for yacht club operations, built with Spring B
   - Interactive Swagger UI
   - OpenAPI 3.0 specification
 
+## 🏛️ Architecture
+
+### System Architecture
+
+```mermaid
+graph TB
+    Client[Client/Frontend] --> Controller[Controllers Layer]
+    Controller --> Security[Security Filter<br/>JWT Authentication]
+    Security --> Service[Service Layer]
+    Service --> Repository[Repository Layer]
+    Repository --> DB[(PostgreSQL<br/>Database)]
+    
+    Service --> Mapper[MapStruct<br/>Mappers]
+    Service --> Validation[Validation<br/>Service]
+    
+    Security --> JWT[JWT Token<br/>Provider]
+    Security --> Strategy[Auth Strategy<br/>Pattern]
+    
+    style Security fill:#f9f,stroke:#333
+    style Strategy fill:#bbf,stroke:#333
+    style DB fill:#bfb,stroke:#333
+```
+
+### Layered Architecture
+
+```mermaid
+graph LR
+    subgraph "Presentation Layer"
+        A[REST Controllers]
+    end
+    subgraph "Security Layer"
+        B[JWT Filter]
+        C[Auth Strategies]
+    end
+    subgraph "Business Layer"
+        D[Services]
+        E[Validators]
+    end
+    subgraph "Persistence Layer"
+        F[Repositories]
+        G[Entities]
+    end
+    subgraph "Database"
+        H[(PostgreSQL)]
+    end
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    F --> G
+    G --> H
+```
+
+## 🎯 Design Patterns
+
+### Strategy Pattern (Authentication)
+- **Interface**: `UserAuthenticationStrategy`
+- **Implementations**: `PartnerAuthStrategy`, `EmployeeAuthStrategy`, `AdminAuthStrategy`
+- **Context**: `AuthServiceImpl` iterates through strategies
+- **Benefit**: Extensible authentication without modifying existing code
+
+### Repository Pattern
+- Spring Data JPA repositories
+- Abstraction over data access
+- Automatic query generation
+
+### DTO Pattern
+- MapStruct for entity-DTO mapping
+- Separation of domain and presentation layers
+- Prevents over-fetching and exposure of sensitive data
+
+### Dependency Injection
+- Constructor injection with Lombok's `@RequiredArgsConstructor`
+- Loose coupling between components
+- Easier testing and maintenance
+
+## 📡 API Endpoints
+
+### Authentication
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/auth/login` | User authentication | No |
+
+### Partners
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/partners` | List all partners | Yes (ADMIN) |
+| GET | `/api/partners/{id}` | Get partner by ID | Yes |
+| POST | `/api/partners` | Create new partner | Yes (ADMIN) |
+| PUT | `/api/partners/{id}` | Update partner | Yes (ADMIN) |
+| DELETE | `/api/partners/{id}` | Delete partner | Yes (ADMIN) |
+
+### Boats
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/boats` | List all boats | Yes |
+| GET | `/api/boats/{id}` | Get boat by ID | Yes |
+| POST | `/api/boats` | Register new boat | Yes (ADMIN) |
+| PUT | `/api/boats/{id}` | Update boat | Yes (ADMIN) |
+| DELETE | `/api/boats/{id}` | Delete boat | Yes (ADMIN) |
+
+### Moorings
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/moorings` | List all moorings | Yes |
+| GET | `/api/moorings/{id}` | Get mooring by ID | Yes |
+| POST | `/api/moorings` | Create mooring | Yes (ADMIN) |
+| PUT | `/api/moorings/{id}` | Update mooring | Yes (ADMIN) |
+| DELETE | `/api/moorings/{id}` | Delete mooring | Yes (ADMIN) |
+
+### Zones
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/zones` | List all zones | Yes |
+| GET | `/api/zones/{id}` | Get zone by ID | Yes |
+| POST | `/api/zones` | Create zone | Yes (ADMIN) |
+| PUT | `/api/zones/{id}` | Update zone | Yes (ADMIN) |
+| DELETE | `/api/zones/{id}` | Delete zone | Yes (ADMIN) |
+
+### Employees
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/employees` | List all employees | Yes (ADMIN) |
+| GET | `/api/employees/{id}` | Get employee by ID | Yes |
+| POST | `/api/employees` | Create employee | Yes (ADMIN) |
+| PUT | `/api/employees/{id}` | Update employee | Yes (ADMIN) |
+| DELETE | `/api/employees/{id}` | Delete employee | Yes (ADMIN) |
+
+
 ## 🛠️ Tech Stack
 
 - **Framework**: Spring Boot 3.5.8
